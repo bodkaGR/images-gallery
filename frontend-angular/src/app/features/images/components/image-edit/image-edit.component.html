@@ -1,0 +1,18 @@
+<div>
+  <form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+    <h3>Update Image</h3>
+    <div>
+      <label for="author">Author</label>
+      <input id="author" type="text" formControlName="author">
+    </div>
+    <div>
+      <label for="filename">Filename</label>
+      <input id="filename" type="text" formControlName="filename">
+    </div>
+    <div>
+      <label for="uploadDate"></label>
+      <input id="uploadDate" type="date" formControlName="uploadDate">
+    </div>
+    <button type="submit" [disabled]="imageForm.invalid">Update Image</button>
+  </form>
+</div>

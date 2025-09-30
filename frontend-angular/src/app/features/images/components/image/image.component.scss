@@ -1,0 +1,88 @@
+.image-card {
+  max-width: 500px;
+  margin: 4rem auto;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 0.75rem;
+    word-break: break-all;
+  }
+
+  small {
+    display: block;
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+
+  button {
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+    &:active {
+      transform: scale(0.97);
+    }
+
+    &.delete {
+      background-color: #e74c3c;
+      color: #fff;
+
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+
+    &.update {
+      background-color: #3498db;
+      color: #fff;
+
+      &:hover {
+        background-color: #2980b9;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .image-card {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  button {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}

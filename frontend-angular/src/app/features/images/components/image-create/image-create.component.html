@@ -1,0 +1,30 @@
+<div>
+  <form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+    <h3>Create Image</h3>
+    <div>
+      <label for="author">Author</label>
+      <input id="author" formControlName="author" />
+      <div *ngIf="imageForm.get('author')?.invalid && imageForm.get('author')?.touched">
+        Title is required
+      </div>
+    </div>
+
+    <div>
+      <label for="filename">Image Filename</label>
+      <input id="filename" formControlName="filename" />
+      <div *ngIf="imageForm.get('filename')?.invalid && imageForm.get('filename')?.touched">
+        Enter correct filename
+      </div>
+    </div>
+
+    <div>
+      <label for="uploadDate">Date</label>
+      <input id="uploadDate" type="date" formControlName="uploadDate" />
+      <div *ngIf="imageForm.get('uploadDate')?.invalid && imageForm.get('uploadDate')?.touched">
+        Upload date is required
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="imageForm.invalid">Create Image</button>
+  </form>
+</div>

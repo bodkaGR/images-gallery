@@ -1,0 +1,12 @@
+<div class="gallery" *ngIf="images?.length; else empty">
+  <div *ngFor="let image of images" (click)="openImageDetails(image.id)" class="image-card">
+    <h3>{{ image.author }}</h3>
+    <p>{{ image.filename }}</p>
+    <small>{{ image.uploadDate | date }}</small>
+    <button (click)="deleteImage(image.id); $event.stopPropagation()">Delete</button>
+  </div>
+</div>
+
+<ng-template #empty>
+  <p class="empty-text">Gallery is empty.</p>
+</ng-template>

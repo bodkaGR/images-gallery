@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  db:
+    container_name: mongo-dev
+    image: mongo:4.2
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${DATABASE_NAME}
+    ports:
+      - '${DB_PORT}:${DB_PORT}'
+    volumes:
+      - ./data:/data/db
+    env_file: ./.env
+
+volumes:
+  data:

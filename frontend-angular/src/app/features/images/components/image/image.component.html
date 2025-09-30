@@ -1,0 +1,7 @@
+<div class="image-card">
+  <h3>{{ image.author }}</h3>
+  <p>{{ image.filename }}</p>
+  <small>{{ image.uploadDate | date: 'mediumDate' }}</small>
+  <button class="delete" (click)="deleteImage(image.id)">Delete</button>
+  <button class="update" (click)="updateImage(image.id)">Update</button>
+</div>

@@ -1,0 +1,113 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding-top: 4rem;
+}
+
+form {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+
+  h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: #34495e;
+    }
+
+    input {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fafafa;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+      }
+
+      &.ng-invalid.ng-touched {
+        border-color: #e74c3c;
+        background-color: #fef0f0;
+      }
+    }
+
+    input[type="date"] {
+      cursor: pointer;
+    }
+
+    /* Стиль повідомлення про помилку */
+    div {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #e74c3c;
+    }
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #27ae60;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+    &:hover:not(:disabled) {
+      background-color: #1e874b;
+    }
+
+    &:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  form {
+    padding: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  input {
+    font-size: 0.95rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+}
