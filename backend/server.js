@@ -3,18 +3,28 @@ const express = require('express');
 const mongoose = require("mongoose");
 const cors = require('cors');
 const path = require("node:path");
+const { ApolloServer } = require("@apollo/server");
+const { startStandaloneServer } = require("@apollo/server/standalone");
 
-const app = express();
-const port = process.env.PORT || 3000;
+const { typeDefs } = require('./interfaces/graphql/imageSchema')
+const { resolvers } = require('./interfaces/graphql/imageResolvers');
 
 const ImageRepositoryMongo = require('./infrastructure/database/mongoose/ImageRepositoryMongo');
 const ImageService = require('./application/ImageService');
-const ImageController = require('./interfaces/controllers/ImageController');
-const imageRoutesFactory = require('./interfaces/routes/imageRoutes');
+const ImageController = require('./interfaces/rest/controllers/ImageController');
+const imageRoutesFactory = require('./interfaces/rest/routes/imageRoutes');
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+const server = express();
+const port = process.env.PORT || 3000;
+const apolloServer = new ApolloServer({ typeDefs, resolvers });
+
+startStandaloneServer(apolloServer, { listen: { port: 4000 } }).then(({ url }) => {
+   console.log(`GraphQL running on ${url}`);
+});
+
+server.use(cors());
+server.use(express.json());
+server.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect(process.env.MONGODB_URL)
     .then(() => console.log('MongoDB Connected'))
@@ -24,6 +34,8 @@ const repositoryMongo = new ImageRepositoryMongo();
 const service = new ImageService(repositoryMongo);
 const controller = new ImageController(service);
 
-app.use('/api/images', imageRoutesFactory(controller));
+server.use('/api/images', imageRoutesFactory(controller));
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+server.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+});
